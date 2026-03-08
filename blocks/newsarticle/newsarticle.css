@@ -1,23 +1,22 @@
 .newsarticle > ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: 24px;
 }
 
 .newsarticle > ul > li {
   border: 1px solid #dadada;
   background-color: var(--background-color);
+  width: 100%;
+  display: flex;
 }
 
 .newsarticle .newsarticle-card-body {
   margin: 16px;
+  width: 50%;
 }
 
 .newsarticle .newsarticle-card-image {
   line-height: 0;
+  width: 50%;
 }
 
 .newsarticle > ul > li img {

@@ -113,23 +113,36 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
+  console.log('block',block);
   // load nav as fragment
   const navMeta = getMetadata('nav');
+  
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragment(navPath);
 
   // decorate nav DOM
   block.textContent = '';
+  const topNav = document.createElement('div');
+  topNav.classList.add('nav-top'); 
   const nav = document.createElement('nav');
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  const classes = ['brand', 'sections', 'tools'];
+  const classes = ['topnav','brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
-    if (section) section.classList.add(`nav-${c}`);
+    console.log("section",section);
+    if (section) {
+      section.classList.add(`nav-${c}`);
+    } 
+    
   });
-
+  const navTop = nav.querySelector('.nav-topnav');
+  console.log("navTop",navTop);
+  topNav.innerHTML = navTop.innerHTML;
+  navTop?.remove();
+  topNav.querySelector('.button-wrapper').classList.add('nav-top__email');
+  topNav.querySelector('.nav-top__email').classList.remove('button-wrapper');
   const navBrand = nav.querySelector('.nav-brand');
   const brandLink = navBrand.querySelector('.button');
   if (brandLink) {
@@ -166,6 +179,7 @@ export default async function decorate(block) {
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
+  navWrapper.append(topNav);
   navWrapper.append(nav);
   block.append(navWrapper);
 }

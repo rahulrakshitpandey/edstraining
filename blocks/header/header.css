@@ -1,9 +1,22 @@
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: red;
   width: 100%;
   z-index: 2;
   position: fixed;
+}
+
+.icon.icon-twitter-x {
+  width: 20px;
+  height: 20px;
+}
+
+header.header-wrapper {
+  height: auto;
+}
+
+header .nav-top {
+  background-color: #0659d4;
+  color: white;
 }
 
 header nav {
@@ -33,6 +46,29 @@ header nav[aria-expanded='true'] {
 @media (width >= 900px) {
   header .nav-wrapper {
     position: relative;
+  }
+
+  .nav-top .default-content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .nav-top .default-content-wrapper p {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    white-space: nowrap;
+  }
+
+  .nav-top .default-content-wrapper .nav-top__email a {
+    padding: 0;
+    background-color: transparent;
+    border: none;
   }
 
   header nav {

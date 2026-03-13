@@ -254,3 +254,38 @@
   object-fit: none;
   max-height: 200px;
 }
+
+
+.feedback-carousel .carousel .carousel-navigation-buttons,
+.feedback-carousel .carousel .carousel-slide-indicators {
+  display: none;
+}
+
+.feedback-carousel .carousel .carousel-navigation-buttons {
+  display: none;
+}
+
+.feedback-carousel .carousel .carousel-slide .carousel-slide-image picture > img {
+  width: 63px;
+  height: 63px;
+}
+
+.feedback-carousel .carousel .carousel-slide {
+  align-items: center;
+}
+
+.feedback-carousel .carousel .carousel-slide .carousel-slide-image picture {
+  position: relative;
+}
+
+.feedback-carousel .carousel .carousel-slide .carousel-slide-content {
+  margin: 20px;
+  background-color: transparent;
+  color: #000000;
+  text-align: center;
+  width: 80%;
+}
+
+.feedback-carousel .carousel .carousel-slide .carousel-slide-content h4:first-of-type {
+  color: #0659D4;
+}

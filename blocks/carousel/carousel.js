@@ -33,6 +33,7 @@ function updateActiveSlide(slide) {
 
 function showSlide(block, slideIndex = 0) {
   const slides = block.querySelectorAll('.carousel-slide');
+  
   let realSlideIndex = slideIndex < 0 ? slides.length - 1 : slideIndex;
   if (slideIndex >= slides.length) realSlideIndex = 0;
   const activeSlide = slides[realSlideIndex];
@@ -150,4 +151,13 @@ export default async function decorate(block) {
   if (!isSingleSlide) {
     bindEvents(block);
   }
+
+  const homepageCarousel = !!block.closest('.homepage-carousel');
+  const brandCarousel = !!block.closest('.homepage-carousel');
+  if(homepageCarousel) {
+    block.__carouselAutoTimer = setInterval(() => {
+      showSlide(block, parseInt(block.dataset.activeSlide || '0', 10) + 1);
+    }, 10000);
+  }
+  
 }

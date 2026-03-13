@@ -108,12 +108,34 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   }
 }
 
+function updateTopNav(topNavElements) {
+  // 1) Scope to the correct wrapper
+  const wrapper = topNavElements.querySelector('.nav-top .default-content-wrapper');
+  if (!wrapper) return;
+
+  // 2) Add class "topnav-address" to the first <p>
+  const firstP = wrapper.querySelector('p');
+  if (!firstP) return;
+  firstP.classList.add('topnav-address');
+
+  // 3) Create a new div with class "topnav-address" inside the wrapper
+  const container = document.createElement('div');
+  container.className = 'topnav-detail-wrapper';
+
+  // Insert the new div at the top of the wrapper (adjust if you prefer a different position)
+  wrapper.insertBefore(container, wrapper.firstChild);
+
+  // 4) Move the first <p> and the ".nav-top__email" into the new container
+  const emailEl = wrapper.querySelector('.nav-top__email');
+  container.appendChild(firstP);      // move the first paragraph inside
+  if (emailEl) container.appendChild(emailEl); // move email block if present
+}
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  console.log('block',block);
   // load nav as fragment
   const navMeta = getMetadata('nav');
   
@@ -131,18 +153,17 @@ export default async function decorate(block) {
   const classes = ['topnav','brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
-    console.log("section",section);
     if (section) {
       section.classList.add(`nav-${c}`);
     } 
     
   });
   const navTop = nav.querySelector('.nav-topnav');
-  console.log("navTop",navTop);
   topNav.innerHTML = navTop.innerHTML;
   navTop?.remove();
   topNav.querySelector('.button-wrapper').classList.add('nav-top__email');
   topNav.querySelector('.nav-top__email').classList.remove('button-wrapper');
+  updateTopNav(topNav);
   const navBrand = nav.querySelector('.nav-brand');
   const brandLink = navBrand.querySelector('.button');
   if (brandLink) {

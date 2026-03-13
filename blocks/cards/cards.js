@@ -1,7 +1,10 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default function decorate(block) {
+  console.log("crad",block);
   /* change to ul, li */
+  const hasParentClass = !!block.closest('.card-animate-above');
+  const hasCardParentClass = !!block.closest('.card-animate-behind');
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
@@ -9,6 +12,21 @@ export default function decorate(block) {
     [...li.children].forEach((div) => {
       if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
       else div.className = 'cards-card-body';
+      
+      if (hasParentClass & div.children.length !== 1) {
+        const cardHighlight = document.createElement('div');
+        cardHighlight.className = 'cards-card-highlight';
+        cardHighlight.innerHTML = div.innerHTML;
+        cardHighlight.querySelector("p").remove();
+        li.appendChild(cardHighlight);
+      }
+      if (hasCardParentClass & div.children.length !== 1) {
+        const cardHighlightelm = document.createElement('div');
+        cardHighlightelm.className = 'cards-card-highlight';
+        cardHighlightelm.innerHTML = `<a href="#">Read More<a>`;
+        li.appendChild(cardHighlightelm);
+      }
+
     });
     ul.append(li);
   });

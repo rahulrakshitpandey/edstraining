@@ -20,8 +20,8 @@
   --link-hover-color: #1d3ecf;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --body-font-family: 'Poppins', sans-serif;
+  --heading-font-family: 'Poppins', sans-serif;
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -38,17 +38,19 @@
 
   /* nav height */
   --nav-height: 64px;
+
+  --width: 1668px;
 }
 
 /* fallback fonts */
 @font-face {
-  font-family: roboto-condensed-fallback;
+  font-family: Poppins;
   size-adjust: 88.82%;
   src: local('Arial');
 }
 
 @font-face {
-  font-family: roboto-fallback;
+  font-family: Poppins;
   size-adjust: 99.529%;
   src: local('Arial');
 }
@@ -322,4 +324,23 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+
+/* Center text */
+.text-center {
+  text-align: center;
+}
+
+/* Green text */
+.text-blue {
+  color: #0659d4;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  margin-top: 0;
 }

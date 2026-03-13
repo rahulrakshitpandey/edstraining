@@ -1,6 +1,7 @@
 footer {
-  background-color: var(--light-color);
+  background-color: #0659d4;
   font-size: var(--body-font-size-xs);
+  color: #ffffff;
 }
 
 footer .footer > div {
@@ -9,8 +10,43 @@ footer .footer > div {
   padding: 40px 24px 24px;
 }
 
+footer .footer ul li p,
+footer .footer ul li a {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+footer .footer ul li a:hover {
+  color: #000000;
+}
+
+footer .footer ul {
+  list-style: none;
+  padding-left: 0;
+}
+footer .footer .default-content-wrapper > ul {
+  display: flex;
+  gap: 2%;
+}
+
+footer .footer .default-content-wrapper > ul > li {
+  width: 24%;
+}
+
+footer .footer ul h2 {
+  font-size: 18.03px;
+}
+
 footer .footer p {
   margin: 0;
+}
+.footer .default-content-wrapper > p:last-of-type {
+  text-align: center;
+  border-top: 1px solid;
+  padding-left: 5%;
+  margin-top: 2rem;
+  padding-top: 1rem;
 }
 
 @media (width >= 900px) {

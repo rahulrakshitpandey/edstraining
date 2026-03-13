@@ -289,3 +289,7 @@
 .feedback-carousel .carousel .carousel-slide .carousel-slide-content h4:first-of-type {
   color: #0659D4;
 }
+
+.feedback-carousel .carousel .carousel-slide {
+  min-height: auto;
+}

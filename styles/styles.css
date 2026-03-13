@@ -21,7 +21,7 @@
 
   /* fonts */
   --body-font-family: 'Poppins', sans-serif;
-  --heading-font-family: 'Poppins', sans-serif;
+  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -44,13 +44,13 @@
 
 /* fallback fonts */
 @font-face {
-  font-family: Poppins;
+  font-family: roboto-condensed-fallback;
   size-adjust: 88.82%;
   src: local('Arial');
 }
 
 @font-face {
-  font-family: Poppins;
+  font-family: roboto-fallback;
   size-adjust: 99.529%;
   src: local('Arial');
 }

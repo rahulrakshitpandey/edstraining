@@ -1,7 +1,6 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default function decorate(block) {
-  console.log("crad",block);
   /* change to ul, li */
   const hasParentClass = !!block.closest('.card-animate-above');
   const hasCardParentClass = !!block.closest('.card-animate-behind');

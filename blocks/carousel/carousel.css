@@ -213,7 +213,7 @@
 
     .key-achievements .carousel .carousel-slide .carousel-slide-content {
       margin: 0;
-      padding: 0;
+      padding: 50px 0;
     }
 
     .key-achievements .carousel .carousel-slide .carousel-slide-content > ul {
@@ -345,4 +345,8 @@
 
 .key-achievements .carousel .carousel-slide .carousel-slide-content > ul > li h2 {
   font-size: 18.03px;
+}
+
+.key-achievements .carousel .carousel-slide {
+  min-height: auto;
 }

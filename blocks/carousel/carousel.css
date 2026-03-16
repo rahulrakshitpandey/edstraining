@@ -210,6 +210,28 @@
     .carousel .carousel-slide .carousel-slide-content[data-align='justify'] {
       --slide-content-width: auto;
     }
+
+    .key-achievements .carousel .carousel-slide .carousel-slide-content {
+      margin: 0;
+      padding: 0;
+    }
+
+    .key-achievements .carousel .carousel-slide .carousel-slide-content > ul {
+      display: flex;
+      height: 100%;
+      margin: 0 auto;
+      gap: 20px;
+    }
+
+    .key-achievements .carousel .carousel-slide .carousel-slide-content > ul > li {
+      width: 25%;
+      text-align: center;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    } 
   }
   .section.homepage-carousel .carousel-wrapper .carousel-slide-content {
     background-color: transparent;
@@ -229,6 +251,11 @@
     line-height: 90px;
   }
   .section.brand-carousel .carousel-wrapper {
+    max-width: min(100%,var(--width));
+    margin: 0 auto;
+    padding: 0;
+  }
+  .section.key-achievements .carousel-wrapper {
     max-width: min(100%,var(--width));
     margin: 0 auto;
     padding: 0;
@@ -292,4 +319,30 @@
 
 .feedback-carousel .carousel .carousel-slide {
   min-height: auto;
+}
+
+.key-achievements .carousel-slide-content {
+  width: 100% !important;
+  height: 100%;
+}
+
+.key-achievements .carousel-slide-content ul {
+  list-style: none;
+}
+
+.key-achievements .carousel .carousel-slide .carousel-slide-content {
+  opacity: 0.9;
+  background-color: #0659d4;
+}
+
+.key-achievements .carousel .carousel-slide .carousel-slide-content > ul > li h3 {
+  color: #FFFFFF;
+  font-size: 70px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.key-achievements .carousel .carousel-slide .carousel-slide-content > ul > li h2 {
+  font-size: 18.03px;
 }

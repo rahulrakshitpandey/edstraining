@@ -162,7 +162,7 @@ export default async function decorate(block) {
 
   if(feedbackCarousel) {
     block.__carouselAutoTimer = setInterval(() => {
-      showSlide(block, parseInt(block.dataset.activeSlide || '0', 10) + 1);
+     // showSlide(block, parseInt(block.dataset.activeSlide || '0', 10) + 1);
     }, 3000);
   }
   

@@ -421,6 +421,15 @@ function addActiveClassToFirstFieldset(form) {
  * @param {Element} block The block element
  */
 export default async function decorate(block) {
+  console.log("block",block);
+  const [blockContainer, formContainer] = [...block.children];
+  blockContainer.className = 'text-wrapper';
+  formContainer.className = 'form-wrapper';
+  
+  const [formblock] = [...formContainer.children];
+  formblock.className = 'getintouchform';
+  const [blockList] = [...blockContainer.children];
+  blockList.className = 'text-section';
   // Get all links from the block
   const links = [...block.querySelectorAll('a[href$=".json"]')];
   
@@ -435,7 +444,7 @@ export default async function decorate(block) {
       form.dataset.spreadsheet = spreadsheetLink.href;
     }
     
-    block.replaceChildren(form);
+    formblock.appendChild(form);
   }
 }
 

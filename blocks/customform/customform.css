@@ -7,6 +7,41 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 32px 16px;
+  display: flex;
+}
+
+.customform .text-wrapper,
+.customform .form-wrapper {
+  width: 50%;
+}
+
+.customform .form-wrapper {
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.15);
+  padding: 50px 50px 50px 50px;
+}
+
+.customform .text-wrapper .text-section h4 {
+  color: #0659d4;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 5rem;
+}
+
+.customform .text-wrapper .text-section  h2:first-of-type {
+  padding: 5px 0px 0px 0px;
+  font-size: 32px;
+}
+
+.customform .text-wrapper .text-section  h2 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 18px;
+}
+
+.customform .text-wrapper .text-section  p {
+  margin-bottom: 2rem;
 }
 
 .customform form {
@@ -71,15 +106,14 @@
 .customform input:hover,
 .customform select:hover,
 .customform textarea:hover {
-  border-color: #9ca3af;
+  border-color: #0659D4;
 }
 
 .customform input:focus,
 .customform select:focus,
 .customform textarea:focus {
   outline: none;
-  border-color: #cf2230;
-  box-shadow: 0 0 0 3px rgba(207, 34, 48, 0.1);
+  border-color: #0659D4;
 }
 
 .customform textarea {
@@ -142,7 +176,7 @@
   font-size: 16px;
   font-weight: 600;
   color: #fff;
-  background-color: #cf2230;
+  background-color: #0659d4;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -150,7 +184,7 @@
 }
 
 .customform .form-submit-wrapper .btn:hover {
-  background-color: #a81c27;
+  background-color: #0659d4;
   box-shadow: 0 4px 12px rgba(207, 34, 48, 0.3);
 }
 
@@ -191,11 +225,11 @@
 
 /* Validation States */
 .customform input:invalid:not(:placeholder-shown) {
-  border-color: #dc2626;
+  border-color: #0659D4;
 }
 
 .customform input:invalid:not(:placeholder-shown):focus {
-  border-color: #dc2626;
+  border-color: #0659D4;
   box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
 }
 
@@ -276,4 +310,12 @@
   .customform fieldset > legend {
     font-size: 17px;
   }
+}
+
+.getintouchform > p {
+  display: none;
+}
+
+.customform .field-label {
+  display: none;
 }

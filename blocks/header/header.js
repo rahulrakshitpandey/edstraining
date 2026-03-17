@@ -131,6 +131,108 @@ function updateTopNav(topNavElements) {
   if (emailEl) container.appendChild(emailEl); // move email block if present
 }
 
+function decorateStickyBehaviour(elements) {
+  const header = document.querySelector('header.header-wrapper');
+  const carousel = document.querySelector('.carousel');
+
+  if (!header || !carousel) {
+    // Graceful no-op if the expected elements aren't present.
+    return;
+  }
+
+  // ---- Spacer prevents layout jump when we switch to fixed positioning
+  const spacer = document.createElement('div');
+  spacer.setAttribute('aria-hidden', 'true');
+  Object.assign(spacer.style, { width: '100%', height: '0px' });
+
+  let isSticky = false;
+  let lastScrollY = window.scrollY;
+
+  function updateSpacer() {
+    if (!isSticky) return;
+    const h = header.getBoundingClientRect().height;
+    spacer.style.height = `${h}px`;
+  }
+
+  function stick() {
+    if (isSticky) return;
+    isSticky = true;
+    header.classList.add('is-sticky');
+    header.insertAdjacentElement('afterend', spacer);
+    updateSpacer();
+  }
+
+  function unstick() {
+    if (!isSticky) return;
+    isSticky = false;
+    header.classList.remove('is-sticky', 'is-compact', 'is-hidden');
+    spacer.remove();
+    spacer.style.height = '0px';
+  }
+
+  // ---- IntersectionObserver: watch a 1px sentinel at the top of .carousel
+  const sentinel = document.createElement('div');
+  sentinel.setAttribute('aria-hidden', 'true');
+  Object.assign(sentinel.style, { position: 'absolute', inset: '0 auto auto 0', width: '1px', height: '1px' });
+
+  // Ensure .carousel is positioned so the sentinel can be placed at its top-left
+  if (getComputedStyle(carousel).position === 'static') {
+    carousel.style.position = 'relative';
+  }
+  carousel.prepend(sentinel);
+
+  const io = new IntersectionObserver((entries) => {
+    const e = entries[0];
+    // If sentinel is visible, we're still at/above the carousel => not sticky
+    if (e.isIntersecting) {
+      unstick();
+    } else {
+      stick();
+    }
+  }, { root: null, threshold: 0 });
+
+  io.observe(sentinel);
+
+  // ---- Scroll direction: compact/shrink and auto-hide behavior
+  const COMPACT_AFTER = 80; // px after sticky to shrink/collapse top band
+  let ticking = false;
+
+  function onScroll() {
+    const y = window.scrollY;
+    if (!isSticky) {
+      lastScrollY = y;
+      return;
+    }
+
+    // Shrink after a small distance
+    const shouldCompact = y > COMPACT_AFTER;
+    header.classList.toggle('is-compact', shouldCompact);
+    lastScrollY = y;
+    updateSpacer();
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => { onScroll(); ticking = false; });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Keep spacer in sync if header resizes (brand image loads, responsive changes, etc.)
+  const ro = new ResizeObserver(updateSpacer);
+  ro.observe(header);
+
+  // Edge case: orientation changes / font loading
+  window.addEventListener('orientationchange', () => setTimeout(updateSpacer, 250));
+
+  // If the header was hidden and user focuses (e.g., tabs to the page), reveal it
+  document.addEventListener('focusin', () => {
+    if (isSticky && header.classList.contains('is-hidden')) {
+      header.classList.remove('is-hidden');
+    }
+  });
+} 
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -203,4 +305,5 @@ export default async function decorate(block) {
   navWrapper.append(topNav);
   navWrapper.append(nav);
   block.append(navWrapper);
+  decorateStickyBehaviour(block);
 }

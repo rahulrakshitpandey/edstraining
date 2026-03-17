@@ -366,3 +366,78 @@ header .nav-drop:first-of-type p a {
 header .default-content-wrapper ul li p a:hover {
   color: #0659d4;
 }
+
+
+/* Base header */
+.header-wrapper {
+  position: relative;
+  z-index: 1000;
+  background: transparent;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    background-color 220ms ease,
+    height 220ms ease;
+  will-change: transform, box-shadow, height;
+}
+
+/* Sticky state: fix to top and add subtle elevation */
+.header-wrapper.is-sticky {
+  position: fixed;
+  inset: 0 0 auto 0;
+  background: rgba(0,0,0,0.7);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Collapse the top strip when sticky + compact */
+.header-wrapper .nav-top {
+  transition: height 200ms ease, opacity 200ms ease, margin 200ms ease, padding 200ms ease;
+}
+.header-wrapper.is-sticky.is-compact .nav-top {
+  height: 0;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Optional: tighten vertical rhythm for the main nav when compact */
+.header-wrapper.is-compact #nav {
+  padding-block: 0.25rem;
+}
+
+/* Auto-hide on downward scroll */
+.header-wrapper.is-hidden {
+  transform: translateY(-100%);
+  box-shadow: none;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .header-wrapper {
+    transition: none;
+  }
+  .header-wrapper.is-hidden {
+    transform: none; /* Don’t slide away, just keep it visible */
+  }
+}
+
+.header-wrapper.is-sticky .nav-sections li p a {
+  color: #ffffff;
+}
+
+.header-wrapper.is-sticky .nav-drop:first-of-type p a {
+  color: #0659d4;
+}
+
+.header-wrapper .nav-brand .default-content-wrapper p:not(:first-of-type) picture {
+  display: none;
+}
+
+.header-wrapper.is-sticky .nav-brand .default-content-wrapper p:first-of-type picture {
+  display: none;
+}
+
+.header-wrapper.is-sticky .nav-brand .default-content-wrapper p:not(:first-of-type) picture {
+  display: block;
+}

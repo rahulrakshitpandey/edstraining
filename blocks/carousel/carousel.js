@@ -153,9 +153,10 @@ export default async function decorate(block) {
   }
 
   const homepageCarousel = !!block.closest('.homepage-carousel');
+  const brandCarousel = !!block.closest('.brand-carousel');
   const feedbackCarousel = !!block.closest('.feedback-carousel');
   const blogCarousel = !!block.closest('.carousel-blogs');
-  if(homepageCarousel || feedbackCarousel || blogCarousel) {
+  if(homepageCarousel || feedbackCarousel || blogCarousel || brandCarousel) {
     block.__carouselAutoTimer = setInterval(() => {
       showSlide(block, parseInt(block.dataset.activeSlide || '0', 10) + 1);
     }, 10000);

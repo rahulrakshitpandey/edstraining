@@ -154,16 +154,11 @@ export default async function decorate(block) {
 
   const homepageCarousel = !!block.closest('.homepage-carousel');
   const feedbackCarousel = !!block.closest('.feedback-carousel');
-  if(homepageCarousel) {
+  const blogCarousel = !!block.closest('.carousel-blogs');
+  if(homepageCarousel || feedbackCarousel || blogCarousel) {
     block.__carouselAutoTimer = setInterval(() => {
       showSlide(block, parseInt(block.dataset.activeSlide || '0', 10) + 1);
     }, 10000);
-  }
-
-  if(feedbackCarousel) {
-    block.__carouselAutoTimer = setInterval(() => {
-     // showSlide(block, parseInt(block.dataset.activeSlide || '0', 10) + 1);
-    }, 3000);
   }
   
 }
